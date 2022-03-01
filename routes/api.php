@@ -13,7 +13,20 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//version nueva de Laravel
+/*use App\Http\Controllers\Api\RespuestasController;
+Route::post('/respuestas',
+    [RespuestasController::class,'store'])->
+    name('api.respuestas.store');
+    
+Route::get('/tiposusuario',
+    [TiposUsuarioController::class,'index'])->
+    name('api.tiposusuario.index');*/
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/respuestas',
+    'Api\RespuestasController@store')->
+    name('api.respuestas.store');
+
+Route::get('/tiposusuario',
+    'Api\TiposUsuarioController@index')->
+    name('api.tiposusuario.index');
