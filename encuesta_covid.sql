@@ -3,18 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 28, 2022 at 11:02 PM
+-- Generation Time: Mar 01, 2022 at 01:56 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `encuesta_covid`
@@ -37,6 +31,14 @@ CREATE TABLE `respuestas` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `respuestas`
+--
+
+INSERT INTO `respuestas` (`id`, `id_tipo_usuario`, `identificador`, `email`, `contacto_covid`, `vacunado`, `cadena_qr`, `created_at`, `updated_at`) VALUES
+(1, 1, '504179', 'micorreo@lasallenoroeste.edu.mx', 0, 1, '123456', '2022-03-01 08:17:10', '2022-03-01 08:17:10'),
+(2, 1, '504179', 'micorreo@lasallenoroeste.edu.mx', 0, 1, '123456', '2022-03-01 08:29:38', '2022-03-01 08:29:38');
 
 -- --------------------------------------------------------
 
@@ -86,7 +88,7 @@ CREATE TABLE `sintomas_respuesta` (
 
 CREATE TABLE `tipos_usuario` (
   `id` int(11) NOT NULL,
-  `descripción` varchar(128) NOT NULL,
+  `descripcion` varchar(128) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -95,7 +97,7 @@ CREATE TABLE `tipos_usuario` (
 -- Dumping data for table `tipos_usuario`
 --
 
-INSERT INTO `tipos_usuario` (`id`, `descripción`, `created_at`, `updated_at`) VALUES
+INSERT INTO `tipos_usuario` (`id`, `descripcion`, `created_at`, `updated_at`) VALUES
 (1, 'Alumno', '2022-02-28 22:52:45', NULL),
 (2, 'Profesor', '2022-02-28 22:52:45', NULL),
 (3, 'Empleado', '2022-02-28 22:52:45', NULL);
@@ -140,7 +142,7 @@ ALTER TABLE `tipos_usuario`
 -- AUTO_INCREMENT for table `respuestas`
 --
 ALTER TABLE `respuestas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sintomas`
@@ -176,7 +178,3 @@ ALTER TABLE `respuestas`
 ALTER TABLE `sintomas_respuesta`
   ADD CONSTRAINT `sintomas_respuesta_ibfk_1` FOREIGN KEY (`id_respuesta`) REFERENCES `respuestas` (`id`),
   ADD CONSTRAINT `sintomas_respuesta_ibfk_2` FOREIGN KEY (`id_sintoma`) REFERENCES `sintomas` (`id`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
